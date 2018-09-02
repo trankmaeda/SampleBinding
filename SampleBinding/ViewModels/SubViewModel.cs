@@ -35,6 +35,13 @@ namespace SampleBinding.ViewModels
             }
         }
 
+        public void SortPCs()
+        {
+            PCs.Clear();
+            _sampleData.Sort((a, b) => Version.Parse(a.IP).CompareTo(Version.Parse(b.IP)));
+            _sampleData.ForEach(PCs.Add);
+        }
+
         public void NavigateToMainPage()
         {
             _navigationService.Navigate(PageTokens.MainPage, null);

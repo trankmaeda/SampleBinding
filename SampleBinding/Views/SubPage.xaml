@@ -28,6 +28,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Content="Sort" Click="{x:Bind ViewModel.SortPCs}"/>
                 <Button Content="GotoMainPage" Click="{x:Bind ViewModel.NavigateToMainPage}" Margin="0,10,0,0"/>
             </StackPanel>
         </Grid>
