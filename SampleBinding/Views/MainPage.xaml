@@ -28,6 +28,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Content="Change IP after 5 seconds"
+                        Click="{x:Bind ViewModel.ChangeIPAfter5Seconds}" Margin="0,10,0,0"/>
                 <Button Content="GotoSubPage" Click="{x:Bind ViewModel.NavigateToSubPage}" Margin="0,10,0,0"/>
             </StackPanel>
         </Grid>
