@@ -1,0 +1,2 @@
+# SampleBinding
+UWP Prismの画面間で基本形以外の型をやり取りするサンプル
