@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    xmlns:models="using:SampleBinding.Models"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
     mc:Ignorable="d">
     <Grid
@@ -15,6 +16,20 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
+            <StackPanel>
+                <TextBlock Text="PC list" Style="{StaticResource TitleTextBlockStyle}"/>
+                <ListView ItemsSource="{x:Bind ViewModel.PCs, Mode=OneWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:PC">
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind IP}" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                <TextBlock Text="{x:Bind Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="GotoSubPage" Click="{x:Bind ViewModel.NavigateToSubPage}" Margin="0,10,0,0"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
