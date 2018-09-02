@@ -5,6 +5,7 @@ using SampleBinding.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Windows.UI.Xaml.Navigation;
 
 namespace SampleBinding.ViewModels
@@ -29,6 +30,7 @@ namespace SampleBinding.ViewModels
         {
             base.OnNavigatedTo(e, viewModelState);
 
+            Debug.WriteLine("Navigated to SubPage.");
             if (e.NavigationMode == NavigationMode.New)
             {
                 _sampleData = _pcService.PCs;
