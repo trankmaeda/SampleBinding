@@ -8,7 +8,7 @@ using Prism.Mvvm;
 using Prism.Unity.Windows;
 using Prism.Windows.AppModel;
 using Prism.Windows.Navigation;
-
+using SampleBinding.Services;
 using SampleBinding.Views;
 
 using Windows.ApplicationModel.Activation;
@@ -31,6 +31,7 @@ namespace SampleBinding
             // register a singleton using Container.RegisterType<IInterface, Type>(new ContainerControlledLifetimeManager());
             base.ConfigureContainer();
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
+            Container.RegisterType<IPCService, PCService>(new ContainerControlledLifetimeManager());
         }
 
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)

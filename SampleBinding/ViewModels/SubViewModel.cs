@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using Newtonsoft.Json;
-using Prism.Windows.Mvvm;
+﻿using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using SampleBinding.Models;
+using SampleBinding.Services;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Navigation;
 
 namespace SampleBinding.ViewModels
@@ -16,10 +15,14 @@ namespace SampleBinding.ViewModels
         private List<PC> _sampleData;
 
         private INavigationService _navigationService;
+        private IPCService _pcService;
 
-        public SubViewModel(INavigationService navigationService)
+        public SubViewModel(
+            INavigationService navigationService,
+            IPCService pcService)
         {
             _navigationService = navigationService;
+            _pcService = pcService;
         }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
@@ -28,9 +31,7 @@ namespace SampleBinding.ViewModels
 
             if (e.NavigationMode == NavigationMode.New)
             {
-                var pcList = e.Parameter as string;
-                Debug.WriteLine($"Received PC   = {pcList}");
-                _sampleData = JsonConvert.DeserializeObject<List<PC>>(pcList);
+                _sampleData = _pcService.PCs;
                 _sampleData.ForEach(PCs.Add);
             }
         }
@@ -40,6 +41,11 @@ namespace SampleBinding.ViewModels
             PCs.Clear();
             _sampleData.Sort((a, b) => Version.Parse(a.IP).CompareTo(Version.Parse(b.IP)));
             _sampleData.ForEach(PCs.Add);
+        }
+
+        public void ChangeIP()
+        {
+            PCs[0].IP = "192.168.99.9";
         }
 
         public void NavigateToMainPage()

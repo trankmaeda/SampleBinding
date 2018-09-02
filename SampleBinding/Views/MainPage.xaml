@@ -22,8 +22,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="models:PC">
                             <StackPanel>
-                                <TextBlock Text="{x:Bind IP}" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                                <TextBlock Text="{x:Bind Name}"/>
+                                <TextBlock Text="{x:Bind IP, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
