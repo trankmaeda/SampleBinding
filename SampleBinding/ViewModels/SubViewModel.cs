@@ -15,7 +15,7 @@ namespace SampleBinding.ViewModels
         public ObservableCollection<PC> PCs { get; } = new ObservableCollection<PC>();
         private List<PC> _sampleData;
 
-        INavigationService _navigationService;
+        private INavigationService _navigationService;
 
         public SubViewModel(INavigationService navigationService)
         {
